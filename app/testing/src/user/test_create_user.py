@@ -10,3 +10,9 @@ async def test_create_user(client: AsyncClient, supervisor_headers):
     }
     response = await client.post("/user", json=body, headers=supervisor_headers)
     assert response.status_code == 200
+
+# test_apis.py
+def test_create_user(test_client):
+    response = test_client.post("/users", json={"name": "John"})
+    assert response.status_code == 200
+    assert response.json()["name"] == "John"
